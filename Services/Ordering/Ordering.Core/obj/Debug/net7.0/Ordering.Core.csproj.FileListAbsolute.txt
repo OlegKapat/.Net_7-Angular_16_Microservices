@@ -1,0 +1,11 @@
+D:\eShoppreload\Services\Ordering\Ordering.Core\bin\Debug\net7.0\Ordering.Core.deps.json
+D:\eShoppreload\Services\Ordering\Ordering.Core\bin\Debug\net7.0\Ordering.Core.dll
+D:\eShoppreload\Services\Ordering\Ordering.Core\bin\Debug\net7.0\Ordering.Core.pdb
+D:\eShoppreload\Services\Ordering\Ordering.Core\obj\Debug\net7.0\Ordering.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\eShoppreload\Services\Ordering\Ordering.Core\obj\Debug\net7.0\Ordering.Core.AssemblyInfoInputs.cache
+D:\eShoppreload\Services\Ordering\Ordering.Core\obj\Debug\net7.0\Ordering.Core.AssemblyInfo.cs
+D:\eShoppreload\Services\Ordering\Ordering.Core\obj\Debug\net7.0\Ordering.Core.csproj.CoreCompileInputs.cache
+D:\eShoppreload\Services\Ordering\Ordering.Core\obj\Debug\net7.0\Ordering.Core.dll
+D:\eShoppreload\Services\Ordering\Ordering.Core\obj\Debug\net7.0\refint\Ordering.Core.dll
+D:\eShoppreload\Services\Ordering\Ordering.Core\obj\Debug\net7.0\Ordering.Core.pdb
+D:\eShoppreload\Services\Ordering\Ordering.Core\obj\Debug\net7.0\ref\Ordering.Core.dll

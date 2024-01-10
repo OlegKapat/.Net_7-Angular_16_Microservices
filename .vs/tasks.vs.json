@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-Basket",
+      "appliesTo": "Services/Basket/Basket.API/",
+      "type": "launch"
+    }
+  ]
+}

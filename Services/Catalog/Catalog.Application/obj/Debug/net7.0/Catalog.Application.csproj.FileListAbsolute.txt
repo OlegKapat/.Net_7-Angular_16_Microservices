@@ -1,0 +1,15 @@
+D:\eShoppreload\Services\Catalog\Catalog.Application\bin\Debug\net7.0\Catalog.Application.deps.json
+D:\eShoppreload\Services\Catalog\Catalog.Application\bin\Debug\net7.0\Catalog.Application.dll
+D:\eShoppreload\Services\Catalog\Catalog.Application\bin\Debug\net7.0\Catalog.Application.pdb
+D:\eShoppreload\Services\Catalog\Catalog.Application\bin\Debug\net7.0\Catalog.Core.dll
+D:\eShoppreload\Services\Catalog\Catalog.Application\bin\Debug\net7.0\Catalog.Core.pdb
+D:\eShoppreload\Services\Catalog\Catalog.Application\obj\Debug\net7.0\Catalog.Application.csproj.AssemblyReference.cache
+D:\eShoppreload\Services\Catalog\Catalog.Application\obj\Debug\net7.0\Catalog.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\eShoppreload\Services\Catalog\Catalog.Application\obj\Debug\net7.0\Catalog.Application.AssemblyInfoInputs.cache
+D:\eShoppreload\Services\Catalog\Catalog.Application\obj\Debug\net7.0\Catalog.Application.AssemblyInfo.cs
+D:\eShoppreload\Services\Catalog\Catalog.Application\obj\Debug\net7.0\Catalog.Application.csproj.CoreCompileInputs.cache
+D:\eShoppreload\Services\Catalog\Catalog.Application\obj\Debug\net7.0\Catalog.Application.csproj.CopyComplete
+D:\eShoppreload\Services\Catalog\Catalog.Application\obj\Debug\net7.0\Catalog.Application.dll
+D:\eShoppreload\Services\Catalog\Catalog.Application\obj\Debug\net7.0\refint\Catalog.Application.dll
+D:\eShoppreload\Services\Catalog\Catalog.Application\obj\Debug\net7.0\Catalog.Application.pdb
+D:\eShoppreload\Services\Catalog\Catalog.Application\obj\Debug\net7.0\ref\Catalog.Application.dll

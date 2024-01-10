@@ -1,0 +1,17 @@
+D:\eShoppreload\Services\Basket\Basket.Application\bin\Debug\net7.0\Basket.Application.deps.json
+D:\eShoppreload\Services\Basket\Basket.Application\bin\Debug\net7.0\Basket.Application.dll
+D:\eShoppreload\Services\Basket\Basket.Application\bin\Debug\net7.0\Basket.Application.pdb
+D:\eShoppreload\Services\Basket\Basket.Application\bin\Debug\net7.0\Basket.Core.dll
+D:\eShoppreload\Services\Basket\Basket.Application\bin\Debug\net7.0\Basket.Core.pdb
+D:\eShoppreload\Services\Basket\Basket.Application\obj\Debug\net7.0\Basket.Application.csproj.AssemblyReference.cache
+D:\eShoppreload\Services\Basket\Basket.Application\obj\Debug\net7.0\Basket.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\eShoppreload\Services\Basket\Basket.Application\obj\Debug\net7.0\Basket.Application.AssemblyInfoInputs.cache
+D:\eShoppreload\Services\Basket\Basket.Application\obj\Debug\net7.0\Basket.Application.AssemblyInfo.cs
+D:\eShoppreload\Services\Basket\Basket.Application\obj\Debug\net7.0\Basket.Application.csproj.CoreCompileInputs.cache
+D:\eShoppreload\Services\Basket\Basket.Application\obj\Debug\net7.0\Basket.Application.csproj.CopyComplete
+D:\eShoppreload\Services\Basket\Basket.Application\obj\Debug\net7.0\Basket.Application.dll
+D:\eShoppreload\Services\Basket\Basket.Application\obj\Debug\net7.0\refint\Basket.Application.dll
+D:\eShoppreload\Services\Basket\Basket.Application\obj\Debug\net7.0\Basket.Application.pdb
+D:\eShoppreload\Services\Basket\Basket.Application\obj\Debug\net7.0\ref\Basket.Application.dll
+D:\eShoppreload\Services\Basket\Basket.Application\bin\Debug\net7.0\EventBus.Messages.dll
+D:\eShoppreload\Services\Basket\Basket.Application\bin\Debug\net7.0\EventBus.Messages.pdb

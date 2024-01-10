@@ -1,0 +1,12 @@
+D:\eShoppreload\Services\Catalog\Catalog.Core\bin\Debug\net7.0\Catalog.Core.deps.json
+D:\eShoppreload\Services\Catalog\Catalog.Core\bin\Debug\net7.0\Catalog.Core.dll
+D:\eShoppreload\Services\Catalog\Catalog.Core\bin\Debug\net7.0\Catalog.Core.pdb
+D:\eShoppreload\Services\Catalog\Catalog.Core\obj\Debug\net7.0\Catalog.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\eShoppreload\Services\Catalog\Catalog.Core\obj\Debug\net7.0\Catalog.Core.AssemblyInfoInputs.cache
+D:\eShoppreload\Services\Catalog\Catalog.Core\obj\Debug\net7.0\Catalog.Core.AssemblyInfo.cs
+D:\eShoppreload\Services\Catalog\Catalog.Core\obj\Debug\net7.0\Catalog.Core.csproj.CoreCompileInputs.cache
+D:\eShoppreload\Services\Catalog\Catalog.Core\obj\Debug\net7.0\Catalog.Core.dll
+D:\eShoppreload\Services\Catalog\Catalog.Core\obj\Debug\net7.0\refint\Catalog.Core.dll
+D:\eShoppreload\Services\Catalog\Catalog.Core\obj\Debug\net7.0\Catalog.Core.pdb
+D:\eShoppreload\Services\Catalog\Catalog.Core\obj\Debug\net7.0\ref\Catalog.Core.dll
+D:\eShoppreload\Services\Catalog\Catalog.Core\obj\Debug\net7.0\Catalog.Core.csproj.AssemblyReference.cache

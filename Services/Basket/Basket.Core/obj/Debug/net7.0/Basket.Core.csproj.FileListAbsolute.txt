@@ -1,0 +1,11 @@
+D:\eShoppreload\Services\Basket\Basket.Core\bin\Debug\net7.0\Basket.Core.deps.json
+D:\eShoppreload\Services\Basket\Basket.Core\bin\Debug\net7.0\Basket.Core.dll
+D:\eShoppreload\Services\Basket\Basket.Core\bin\Debug\net7.0\Basket.Core.pdb
+D:\eShoppreload\Services\Basket\Basket.Core\obj\Debug\net7.0\Basket.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\eShoppreload\Services\Basket\Basket.Core\obj\Debug\net7.0\Basket.Core.AssemblyInfoInputs.cache
+D:\eShoppreload\Services\Basket\Basket.Core\obj\Debug\net7.0\Basket.Core.AssemblyInfo.cs
+D:\eShoppreload\Services\Basket\Basket.Core\obj\Debug\net7.0\Basket.Core.csproj.CoreCompileInputs.cache
+D:\eShoppreload\Services\Basket\Basket.Core\obj\Debug\net7.0\Basket.Core.dll
+D:\eShoppreload\Services\Basket\Basket.Core\obj\Debug\net7.0\refint\Basket.Core.dll
+D:\eShoppreload\Services\Basket\Basket.Core\obj\Debug\net7.0\Basket.Core.pdb
+D:\eShoppreload\Services\Basket\Basket.Core\obj\Debug\net7.0\ref\Basket.Core.dll

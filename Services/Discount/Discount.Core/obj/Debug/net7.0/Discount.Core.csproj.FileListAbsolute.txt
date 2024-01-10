@@ -1,0 +1,11 @@
+D:\eShoppreload\Services\Discount\Discount.Core\bin\Debug\net7.0\Discount.Core.deps.json
+D:\eShoppreload\Services\Discount\Discount.Core\bin\Debug\net7.0\Discount.Core.dll
+D:\eShoppreload\Services\Discount\Discount.Core\bin\Debug\net7.0\Discount.Core.pdb
+D:\eShoppreload\Services\Discount\Discount.Core\obj\Debug\net7.0\Discount.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\eShoppreload\Services\Discount\Discount.Core\obj\Debug\net7.0\Discount.Core.AssemblyInfoInputs.cache
+D:\eShoppreload\Services\Discount\Discount.Core\obj\Debug\net7.0\Discount.Core.AssemblyInfo.cs
+D:\eShoppreload\Services\Discount\Discount.Core\obj\Debug\net7.0\Discount.Core.csproj.CoreCompileInputs.cache
+D:\eShoppreload\Services\Discount\Discount.Core\obj\Debug\net7.0\Discount.Core.dll
+D:\eShoppreload\Services\Discount\Discount.Core\obj\Debug\net7.0\refint\Discount.Core.dll
+D:\eShoppreload\Services\Discount\Discount.Core\obj\Debug\net7.0\Discount.Core.pdb
+D:\eShoppreload\Services\Discount\Discount.Core\obj\Debug\net7.0\ref\Discount.Core.dll
