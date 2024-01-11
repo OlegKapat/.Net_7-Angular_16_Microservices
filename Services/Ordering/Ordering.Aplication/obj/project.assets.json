@@ -197,6 +197,16 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "EventBus.Messages/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/EventBus.Messages.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EventBus.Messages.dll": {}
+        }
+      },
       "Ordering.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -559,6 +569,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "EventBus.Messages/1.0.0": {
+      "type": "project",
+      "path": "../../../Infrastructure/EventBus.Messages/EventBus.Messages.csproj",
+      "msbuildProject": "../../../Infrastructure/EventBus.Messages/EventBus.Messages.csproj"
+    },
     "Ordering.Core/1.0.0": {
       "type": "project",
       "path": "../Ordering.Core/Ordering.Core.csproj",
@@ -569,6 +584,7 @@
     "net7.0": [
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
+      "EventBus.Messages >= 1.0.0",
       "FluentValidation >= 11.9.0",
       "FluentValidation.DependencyInjectionExtensions >= 11.9.0",
       "MediatR >= 12.0.1",
@@ -604,6 +620,9 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+            "D:\\eShoppreload\\Infrastructure\\EventBus.Messages\\EventBus.Messages.csproj": {
+              "projectPath": "D:\\eShoppreload\\Infrastructure\\EventBus.Messages\\EventBus.Messages.csproj"
+            },
             "D:\\eShoppreload\\Services\\Ordering\\Ordering.Core\\Ordering.Core.csproj": {
               "projectPath": "D:\\eShoppreload\\Services\\Ordering\\Ordering.Core\\Ordering.Core.csproj"
             }

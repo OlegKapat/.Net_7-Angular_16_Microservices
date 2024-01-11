@@ -6,10 +6,8 @@ using Basket.Application.Responses;
 using Basket.Core.Entities;
 using EventBus.Messages.Events;
 using MassTransit;
-using MassTransit.Transports;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Basket.API.Controllers
 {
@@ -53,7 +51,10 @@ namespace Basket.API.Controllers
             foreach (var item in createShoppingCartCommand.Items)
             {
                 var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
-                item.Price -= coupon.Amount;
+                if(coupon == null){
+                    item.Price = 0;
+                }
+                item.Price -= coupon!.Amount;
             }
             var basket = await _mediator.Send(createShoppingCartCommand);
             return Ok(basket);

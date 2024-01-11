@@ -96,3 +96,9 @@ D:\eShoppreload\Services\Ordering\Ordering.API\bin\Debug\net7.0\Microsoft.Extens
 D:\eShoppreload\Services\Ordering\Ordering.API\bin\Debug\net7.0\Mono.TextTemplating.dll
 D:\eShoppreload\Services\Ordering\Ordering.API\bin\Debug\net7.0\System.CodeDom.dll
 D:\eShoppreload\Services\Ordering\Ordering.API\bin\Debug\net7.0\Polly.dll
+D:\eShoppreload\Services\Ordering\Ordering.API\bin\Debug\net7.0\MassTransit.dll
+D:\eShoppreload\Services\Ordering\Ordering.API\bin\Debug\net7.0\MassTransit.Abstractions.dll
+D:\eShoppreload\Services\Ordering\Ordering.API\bin\Debug\net7.0\MassTransit.AspNetCoreIntegration.dll
+D:\eShoppreload\Services\Ordering\Ordering.API\bin\Debug\net7.0\MassTransit.ExtensionsDependencyInjectionIntegration.dll
+D:\eShoppreload\Services\Ordering\Ordering.API\bin\Debug\net7.0\MassTransit.RabbitMqTransport.dll
+D:\eShoppreload\Services\Ordering\Ordering.API\bin\Debug\net7.0\RabbitMQ.Client.dll

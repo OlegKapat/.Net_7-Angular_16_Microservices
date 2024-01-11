@@ -22,7 +22,7 @@ namespace Basket.Infrastructure.Repositories
                 return null;
             }
 
-            return JsonConvert.DeserializeObject<ShoppingCart>(basket);
+            return  JsonConvert.DeserializeObject<ShoppingCart>(basket);
         }
 
         public async Task<ShoppingCart> UpdateBasket(ShoppingCart shoppingCart)

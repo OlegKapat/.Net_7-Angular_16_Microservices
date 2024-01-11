@@ -63,11 +63,8 @@ builder.Services.AddCors(options =>
     );
 });
 
-//Redis Settings
-builder.Services.AddStackExchangeRedisCache(options =>
-{
-    options.Configuration = configuration.GetValue<string>("CacheSettings:ConnectionString");
-});
+
+
 builder.Services.AddMediatR(
     cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(CreateShoppingCartCommandHandler))
 );
@@ -78,14 +75,19 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
     o => o.Address = new Uri(configuration["GrpcSettings:DiscountUrl"])
 );
 
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = configuration.GetValue<string>("CacheSettings:ConnectionString");
+});
+
 builder.Services
     .AddHealthChecks()
     .AddRedis(
         configuration["CacheSettings:ConnectionString"],
         "Redis Health",
-        HealthStatus.Degraded
+       HealthStatus.Degraded
     );
-
 //Mass Transit
 builder.Services.Configure<MassTransitHostOptions>(options =>
 {

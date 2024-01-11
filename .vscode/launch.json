@@ -35,34 +35,7 @@
                 "appProject": "${workspaceFolder}/Services/Catalog/Catalog.API/Catalog.API.csproj"
             }
         },
-        {
-            "name": "Basket",
-            "type": "coreclr",
-            "request": "launch",
-            "program": "${workspaceFolder}/Services/Basket/Basket.Core/bin/Debug/net7.0/Basket.Core.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/Services/Basket/Basket.Core",
-            "stopAtEntry": false,
-            "externalConsole": false
-        },
-        {
-            "name": "Discount",
-            "type": "coreclr",
-            "request": "launch",
-            "program": "${workspaceFolder}/Services/Discount/Discount.Core/bin/Debug/net7.0/Discount.Core.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/Services/Discount/Discount.Core",
-            "stopAtEntry": false,
-            "externalConsole": false
-        }
+       
+      
     ],
-    "compounds": [
-        {
-            "name": "Launch Basket&Discount",
-            "configurations": [
-                "Basket",
-                "Discount"
-            ]
-        }
-    ]
 }
