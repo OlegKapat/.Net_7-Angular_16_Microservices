@@ -11,9 +11,12 @@ namespace Ordering.Infrastructure.Extentions
     {
         public static IServiceCollection AddInfraServices(this IServiceCollection serviceCollection,IConfiguration configuration)
         {
-            serviceCollection.AddDbContext<OrderContext>(options=>options.UseSqlServer(configuration.GetConnectionString("OrderingConnectionString") ,builder=>{
-                builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
-            }));
+            // serviceCollection.AddDbContext<OrderContext>(options=>options.UseSqlServer(configuration.GetConnectionString("OrderingConnectionString") ,builder=>{
+            //     builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+            // }));
+            //  var connecxtionstring = configuration.GetConnectionString("OrderingConnectionString");
+            // var optionsBuilder = new DbContextOptionsBuilder<OrderContext>();
+            // optionsBuilder.UseSqlServer(connecxtionstring, b=>b.MigrationsAssembly("initialcreate"));
             serviceCollection.AddScoped(typeof(IAsyncRepository<>),typeof(RepositoryBase<>));
             serviceCollection.AddScoped<IOrderRepository, OrderRepository>();
             return serviceCollection;

@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Ordering.Aplication.Commands;
@@ -19,8 +15,8 @@ namespace Ordering.API.Controllers
         {
             _mediator = mediator;
         }
-
-        [HttpGet("{userName}", Name = "GetOrdersByUserName")]
+      
+        [HttpGet("GetOrdersByUserName/{userName}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<OrderResponse>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<OrderResponse>>> GetOrdersByUserName(
@@ -32,7 +28,7 @@ namespace Ordering.API.Controllers
             return Ok(orders);
         }
 
-        [HttpPost(Name = "CheckoutOrder")]
+        [HttpPost("CheckoutOrder")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<ActionResult<int>> CkeckOutOrder([FromBody] CheckoutOrderCommand command)
         {
@@ -40,7 +36,7 @@ namespace Ordering.API.Controllers
             return Ok(result);
         }
 
-        [HttpPut(Name = "UpdateOrder")]
+        [HttpPut("UpdateOrder")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> UpdateOrder([FromBody] UpdateOrderCommand command)
@@ -49,7 +45,7 @@ namespace Ordering.API.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}", Name = "DeleteOrder")]
+        [HttpDelete("DeleteOrder/{id}", Name = "DeleteOrder")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

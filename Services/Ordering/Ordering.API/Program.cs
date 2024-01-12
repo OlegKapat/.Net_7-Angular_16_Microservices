@@ -8,6 +8,7 @@ using Ordering.Infrastructure.Extentions;
 using MassTransit;
 using EventBus.Messages.Common;
 using Ordering.API.EventBusConsumer;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,22 +28,24 @@ IConfiguration configuration = new ConfigurationBuilder()
     .Build();
 
 //builder.Services.AddMassTransitHostedService();
-builder.Services.AddControllers();
-builder.Services.AddScoped<OrderContextFactory>();
-//builder.Services.AddDbContext<OrderContext>(x=>x.UseSqlServer(configuration["ConnectionString:OrderingConnectionString"]));
+
+ 
 builder.Services.AddApiVersioning();
 builder.Services.AddApplicationServices();
-
 builder.Services.AddInfraServices(configuration);
+//builder.Services.AddScoped<OrderContextFactory>();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<BasketOrderingConsumer>();
-host.MigrateDatabase<OrderContext>(
-    (context, services) =>
-    {
-        var logger = services.GetService<ILogger<OrderContextSeed>>();
-        OrderContextSeed.SeedAsync(context, logger!).Wait();
-    }
-);
+// host.MigrateDatabase<OrderContext>(
+//     (context, services) =>
+//     {
+//         var logger = services.GetService<ILogger<OrderContextSeed>>();
+//         OrderContextSeed.SeedAsync(context, logger!).Wait();
+//     }
+// );
+builder.Services.AddControllers();
+//builder.Services.AddEntityFrameworkSqlServer ();
+builder.Services.AddDbContext<OrderContext>(x=>x.UseSqlServer(builder.Configuration.GetConnectionString ("OrderingConnectionString")));
 
 builder.Services.AddMassTransit(config =>
 {
