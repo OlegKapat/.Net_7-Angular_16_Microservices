@@ -8,14 +8,9 @@ namespace Ordering.Infrastructure.Data
     {
         public OrderContext CreateDbContext(string[] args)
         {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            .Build();
-            var optionsBuilder = new DbContextOptionsBuilder<OrderContext>();
-            var connecxtionstring = configuration.GetConnectionString("OrderingConnectionString");
-            optionsBuilder.UseSqlServer(connecxtionstring, b=>b.MigrationsAssembly("initialcreate"));
-            return new OrderContext(optionsBuilder.Options);
+        var optionsBuilder = new DbContextOptionsBuilder<OrderContext>();
+        optionsBuilder.UseSqlServer("Data Source=OrderDb");
+        return new OrderContext(optionsBuilder.Options);
         }
     }
 }

@@ -29,7 +29,7 @@ IConfiguration configuration = new ConfigurationBuilder()
 
 //builder.Services.AddMassTransitHostedService();
 
- 
+builder.Services.AddDbContext<OrderContext>(x=>x.UseSqlServer(configuration["ConnectionStrings:OrderingConnectionString"]));
 builder.Services.AddApiVersioning();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfraServices(configuration);
@@ -45,7 +45,7 @@ builder.Services.AddScoped<BasketOrderingConsumer>();
 // );
 builder.Services.AddControllers();
 //builder.Services.AddEntityFrameworkSqlServer ();
-builder.Services.AddDbContext<OrderContext>(x=>x.UseSqlServer(builder.Configuration.GetConnectionString ("OrderingConnectionString")));
+
 
 builder.Services.AddMassTransit(config =>
 {
