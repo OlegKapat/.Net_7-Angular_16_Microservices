@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-using IHost host = Host.CreateApplicationBuilder(args).Build();
+// using IHost host = Host.CreateApplicationBuilder(args).Build()
 // .MigrateDatabase<OrderContext>((context,services)=>
 // {
 //         var logger = services.GetService<ILogger<OrderContextSeed>>();
-//         OrderContextSeed.SeedAsync(context).Wait();
+//         OrderContextSeed.SeedAsync(context,logger).Wait();
 // });
-
-builder.Logging.AddConsole();
+//var configuration  = builder.Configuration;
+//builder.Logging.AddConsole();
 IConfiguration configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -28,8 +28,8 @@ IConfiguration configuration = new ConfigurationBuilder()
     .Build();
 
 //builder.Services.AddMassTransitHostedService();
-
-builder.Services.AddDbContext<OrderContext>(x=>x.UseSqlServer(configuration["ConnectionStrings:OrderingConnectionString"]));
+builder.Services.AddControllers();
+builder.Services.AddDbContext<OrderContext>(x=>x.UseSqlServer(configuration.GetConnectionString("OrderingConnectionString")));
 builder.Services.AddApiVersioning();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfraServices(configuration);
@@ -43,7 +43,7 @@ builder.Services.AddScoped<BasketOrderingConsumer>();
 //         OrderContextSeed.SeedAsync(context, logger!).Wait();
 //     }
 // );
-builder.Services.AddControllers();
+
 //builder.Services.AddEntityFrameworkSqlServer ();
 
 
