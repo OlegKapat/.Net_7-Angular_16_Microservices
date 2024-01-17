@@ -128,4 +128,16 @@ services:
     ports:
       - "9003:80"
 
+  ocelotapi:
+    container_name: ocelotapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development      
+    depends_on:
+#      - identityserver
+      - catalogapi
+      - basketapi
+      - discountapi
+      - orderingapi
+    ports:
+      - "9010:80" 
   

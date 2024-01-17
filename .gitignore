@@ -122,6 +122,7 @@ project.lock.json
 project.fragment.lock.json
 artifacts/
 **/Properties/launchSettings.json
+**/AssemblyReference.cache
 
 *_i.c
 *_p.c
@@ -327,6 +328,7 @@ typings/
 
 # Visual Studio 6 workspace options file
 *.opt
+*.cache
 
 # Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
 *.vbw
@@ -337,6 +339,7 @@ typings/
 **/*.DesktopClient/ModelManifest.xml
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
+**/*.AssemblyReference.cache
 _Pvt_Extensions
 
 # Paket dependency manager
