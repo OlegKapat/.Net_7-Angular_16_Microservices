@@ -67,3 +67,10 @@ D:\eShoppreload\Services\Catalog\Catalog.API\bin\Debug\net7.0\AutoMapper.Extensi
 D:\eShoppreload\Services\Catalog\Catalog.API\bin\Debug\net7.0\Data\SeedData\brands.json
 D:\eShoppreload\Services\Catalog\Catalog.API\bin\Debug\net7.0\Data\SeedData\products.json
 D:\eShoppreload\Services\Catalog\Catalog.API\bin\Debug\net7.0\Data\SeedData\types.json
+D:\eShoppreload\Services\Catalog\Catalog.API\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\eShoppreload\Services\Catalog\Catalog.API\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\eShoppreload\Services\Catalog\Catalog.API\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+D:\eShoppreload\Services\Catalog\Catalog.API\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+D:\eShoppreload\Services\Catalog\Catalog.API\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\eShoppreload\Services\Catalog\Catalog.API\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+D:\eShoppreload\Services\Catalog\Catalog.API\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll

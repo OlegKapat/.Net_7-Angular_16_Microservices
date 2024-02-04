@@ -81,8 +81,19 @@ namespace Catalog.API
                 .AddJwtBearer(options =>
                 {
                     options.Authority = "https://localhost:9009";
-                    options.Audience = "Basket";
+                    options.Audience = "Catalog";
                 });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("CanRead", builder =>
+                {
+                    builder.RequireClaim("scope", "catalogapi.read");
+                });
+                options.AddPolicy("CanWrite", builder =>
+                {
+                    builder.RequireClaim("scope", "catalogapi.write");
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
