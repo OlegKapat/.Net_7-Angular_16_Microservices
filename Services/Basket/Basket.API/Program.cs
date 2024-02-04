@@ -9,7 +9,10 @@ using Discount.Grpc.Protos;
 using HealthChecks.UI.Client;
 using MassTransit;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -24,7 +27,7 @@ IConfiguration configuration = new ConfigurationBuilder()
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -63,8 +66,6 @@ builder.Services.AddCors(options =>
     );
 });
 
-
-
 builder.Services.AddMediatR(
     cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(CreateShoppingCartCommandHandler))
 );
@@ -74,7 +75,6 @@ builder.Services.AddScoped<DiscountGrpcService>();
 builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
     o => o.Address = new Uri(configuration["GrpcSettings:DiscountUrl"])
 );
-
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {
@@ -86,8 +86,9 @@ builder.Services
     .AddRedis(
         configuration["CacheSettings:ConnectionString"],
         "Redis Health",
-       HealthStatus.Degraded
+        HealthStatus.Degraded
     );
+
 //Mass Transit
 builder.Services.Configure<MassTransitHostOptions>(options =>
 {
@@ -106,6 +107,20 @@ builder.Services.AddMassTransit(config =>
     );
 });
 
+//? Add Authentication
+var userPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add(new AuthorizeFilter(userPolicy));
+});
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.Authority = "https://localhost:9009";
+        options.Audience = "Basket";
+    });
 var app = builder.Build();
 
 var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
@@ -129,6 +144,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseAuthentication();
 app.UseCors("CorsPolicy");
 app.UseAuthorization();
 

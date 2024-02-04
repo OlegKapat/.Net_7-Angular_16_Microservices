@@ -6,7 +6,10 @@ using Catalog.Infrastructure.Data;
 using Catalog.Infrastructure.Repositories;
 using HealthChecks.UI.Client;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 
@@ -30,7 +33,10 @@ namespace Catalog.API
                     "CorsPolicy",
                     policy =>
                     {
-                        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:9000");
+                        policy
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .WithOrigins("http://localhost:9000");
                     }
                 );
             });
@@ -56,10 +62,27 @@ namespace Catalog.API
                 .AddScoped<ICatalogContext, CatalogContext>()
                 .AddHealthChecks()
                 .AddCheck<CustomHealthCheck>(nameof(CustomHealthCheck));
+            services.AddScoped<ICatalogContext, CatalogContext>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBrandRepository, ProductRepository>();
             services.AddScoped<ITypesRepository, ProductRepository>();
-            services.AddControllers();
+            //services.AddControllers();
+
+            //? Add Authentication
+            var userPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(new AuthorizeFilter(userPolicy));
+            });
+
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = "https://localhost:9009";
+                    options.Audience = "Basket";
+                });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -68,9 +91,12 @@ namespace Catalog.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Catalog.API v1"));
+                app.UseSwaggerUI(
+                    c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Catalog.API v1")
+                );
             }
             app.UseRouting();
+            app.UseAuthentication();
             app.UseCors("CorsPolicy");
             app.UseStaticFiles();
             app.UseAuthorization();
