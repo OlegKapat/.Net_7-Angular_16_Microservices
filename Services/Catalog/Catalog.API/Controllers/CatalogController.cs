@@ -4,6 +4,7 @@ using Catalog.Application.Queries;
 using Catalog.Application.Responses;
 using Catalog.Core.Specs;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers
@@ -11,9 +12,11 @@ namespace Catalog.API.Controllers
     public class CatalogController : ApiController
     {
         private readonly IMediator _madiator;
+        public ILogger<CatalogController> _logger;
 
-        public CatalogController(IMediator madiator)
+        public CatalogController(IMediator madiator, ILogger<CatalogController> logger)
         {
+            _logger = logger;
             _madiator = madiator;
         }
 
@@ -45,11 +48,15 @@ namespace Catalog.API.Controllers
         [Route("GetAllProducts")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<ProductResponse>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IList<ProductResponse>>> GetAllProducts([FromQuery] CatalogSpecParams catalogSpecParams)
+        public async Task<ActionResult<IList<ProductResponse>>> GetAllProducts(
+            [FromQuery] CatalogSpecParams catalogSpecParams
+        )
         {
             var query = new GetAllProductsQuery(catalogSpecParams);
             var result = await _madiator.Send(query);
-            if(result.Count == 0) return NotFound("Could not find products");
+              _logger.LogInformation("All products retrieved");
+            if (result.Count == 0)
+                return NotFound("Could not find products");
             return Ok(result);
         }
 
@@ -61,7 +68,8 @@ namespace Catalog.API.Controllers
         {
             var query = new GetAllBrandsQuery();
             var result = await _madiator.Send(query);
-              if(result.Count == 0) return NotFound("Could not find brands");
+            if (result.Count == 0)
+                return NotFound("Could not find brands");
             return Ok(result);
         }
 
@@ -73,7 +81,8 @@ namespace Catalog.API.Controllers
         {
             var query = new GetAllTypesQuery();
             var result = await _madiator.Send(query);
-              if(result.Count == 0) return NotFound("Could not find types");
+            if (result.Count == 0)
+                return NotFound("Could not find types");
             return Ok(result);
         }
 
@@ -85,7 +94,8 @@ namespace Catalog.API.Controllers
         {
             var query = new GetProductByBrandnQuery(brand);
             var result = await _madiator.Send(query);
-              if(result.Count == 0) return NotFound("Could not find product by name");
+            if (result.Count == 0)
+                return NotFound("Could not find product by name");
             return Ok(result);
         }
 

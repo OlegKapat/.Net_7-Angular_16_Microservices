@@ -106,6 +106,22 @@ builder.Services.AddMassTransit(config =>
         }
     );
 });
+ //?Identity Server changes
+        var Policy = new AuthorizationPolicyBuilder()
+            .RequireAuthenticatedUser()
+            .Build();
+        
+        builder.Services.AddControllers(config =>
+        {
+            config.Filters.Add(new AuthorizeFilter(Policy));
+        });
+        
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.Authority = "https://localhost:9009";
+                options.Audience = "Basket";
+            });
 
 //? Add Authentication
 var userPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
@@ -122,7 +138,7 @@ builder.Services
         options.Audience = "Basket";
     });
 var app = builder.Build();
-
+var nginxPath = "/basket";
 var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 
 // Configure the HTTP request pipeline.

@@ -1,8 +1,20 @@
 # Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
 
-version: '3.4'
+version: "3.4"
 
 services:
+  reverseproxy:
+    container_name: reverseproxy
+    restart: always
+    ports:
+      - "44344:44344"
+    depends_on:
+      - identityserver
+      - catalogapi
+      - basketapi
+      - discountapi
+      - orderingapi
+
   catalogdb:
     container_name: catalogdb
     restart: always
@@ -49,7 +61,7 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
-     
+
     volumes:
       - ./rabbitmq:/var/lib/rabbitmq
 
@@ -74,7 +86,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
-      
+
   catalogapi:
     container_name: catalogapi
     environment:
@@ -88,7 +100,7 @@ services:
       - catalogdb
     ports:
       - "9000:80"
- 
+
   basketapi:
     container_name: basketapi
     environment:
@@ -108,7 +120,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings__ConnectionString=Server=discountdb;Port=5432;Database=postgres;User Id=postgres;Password=1q2q3q4q;"
       # - "ElasticConfiguration__Uri=http://elasticsearch:9200"
-#      - ASPNETCORE_URLS=http://*:9002          
+    #      - ASPNETCORE_URLS=http://*:9002
     depends_on:
       - discountdb
     ports:
@@ -118,7 +130,7 @@ services:
     container_name: orderingapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-#      - ASPNETCORE_URLS=http://*:9003
+      #      - ASPNETCORE_URLS=http://*:9003
       - "ConnectionStrings__OrderingConnectionString=Server=orderdb;Database=OrderDb;User Id=bombastik;Password=1q2q3q4q"
       - "EventBusSettings__HostAddress=amqp://guest:guest@rabbitmq:5672"
       # - "ElasticConfiguration__Uri=http://elasticsearch:9200"
@@ -131,13 +143,19 @@ services:
   ocelotapi:
     container_name: ocelotapi
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development      
+      - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
-#      - identityserver
+      - identityserver
       - catalogapi
       - basketapi
       - discountapi
       - orderingapi
     ports:
-      - "9010:80" 
-  
+      - "9010:80"
+  identityserver:
+    container_name: identityserver
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:9011
+    ports:
+      - "9011:9011"

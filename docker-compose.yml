@@ -3,6 +3,11 @@
 version: "3.4"
 
 services:
+  reverseproxy:
+    build:
+      context: .
+      dockerfile: ApiGateways/nginx/nginx.Dockerfile
+
   catalogdb:
     image: mongo
 
@@ -11,10 +16,10 @@ services:
 
   discountdb:
     image: postgres
-  
+
   rabbitmq:
     image: rabbitmq:3-management
-    
+
   orderdb:
     image: mcr.microsoft.com/mssql/server:2019-latest
 
@@ -54,9 +59,13 @@ services:
       context: .
       dockerfile: ApiGateways/Ocelot.ApiGateways/Dockerfile
       
+  identityserver:
+    image: ${DOCKER_REGISTRY-}identityserver
+    build:
+      context: .
+      dockerfile: Infrastructure/EShopping.Identity/Dockerfile
 volumes:
   mongo_data:
   portainer_data:
   postgres_data:
   pgadmin_data:
-  
