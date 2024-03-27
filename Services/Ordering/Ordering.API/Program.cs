@@ -9,6 +9,7 @@ using MassTransit;
 using EventBus.Messages.Common;
 using Ordering.API.EventBusConsumer;
 using Microsoft.EntityFrameworkCore;
+using Common.Logging.Correlation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,7 @@ builder.Services.AddInfraServices(configuration);
 //builder.Services.AddScoped<OrderContextFactory>();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<BasketOrderingConsumer>();
+builder.Services.AddScoped<ICorrelationIdGenerator, CorrelationIdGenerator>();
 // host.MigrateDatabase<OrderContext>(
 //     (context, services) =>
 //     {

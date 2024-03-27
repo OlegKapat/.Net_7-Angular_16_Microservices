@@ -4,6 +4,7 @@ using Catalog.Application.Services;
 using Catalog.Core.Repositories;
 using Catalog.Infrastructure.Data;
 using Catalog.Infrastructure.Repositories;
+using Common.Logging.Correlation;
 using HealthChecks.UI.Client;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -66,6 +67,7 @@ namespace Catalog.API
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBrandRepository, ProductRepository>();
             services.AddScoped<ITypesRepository, ProductRepository>();
+            services.AddScoped<ICorrelationIdGenerator, CorrelationIdGenerator>();
             //services.AddControllers();
 
             //? Add Authentication

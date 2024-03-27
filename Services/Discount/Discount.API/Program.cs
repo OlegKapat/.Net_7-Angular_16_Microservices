@@ -1,3 +1,4 @@
+using Common.Logging.Correlation;
 using Discount.API.Services;
 using Discount.Application.Commands;
 using Discount.Core.Repositories;
@@ -22,6 +23,7 @@ builder.Services.AddMediatR(
 builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddGrpc();
+builder.Services.AddScoped<ICorrelationIdGenerator, CorrelationIdGenerator>();
 
 var app = builder.Build();
 

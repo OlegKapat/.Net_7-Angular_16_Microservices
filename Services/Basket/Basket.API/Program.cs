@@ -5,6 +5,7 @@ using Basket.Application.GrpcService;
 using Basket.Application.Handlers;
 using Basket.Core.Repositories;
 using Basket.Infrastructure.Repositories;
+using Common.Logging.Correlation;
 using Discount.Grpc.Protos;
 using HealthChecks.UI.Client;
 using MassTransit;
@@ -122,6 +123,7 @@ builder.Services.AddMassTransit(config =>
                 options.Authority = "https://localhost:9009";
                 options.Audience = "Basket";
             });
+        builder.Services.AddScoped<ICorrelationIdGenerator, CorrelationIdGenerator>();
 
 //? Add Authentication
 var userPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();

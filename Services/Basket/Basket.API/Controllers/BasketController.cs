@@ -4,6 +4,7 @@ using Basket.Application.Mappers;
 using Basket.Application.Queries;
 using Basket.Application.Responses;
 using Basket.Core.Entities;
+using Common.Logging.Correlation;
 using EventBus.Messages.Events;
 using MassTransit;
 using MediatR;
@@ -14,18 +15,22 @@ namespace Basket.API.Controllers
     public class BasketController : ApiController
     {
         private readonly IMediator _mediator;
-        public readonly DiscountGrpcService _discountGrpcService;
+        private readonly ILogger<BasketController> _logger;
         public readonly IPublishEndpoint _publishEndpoint;
+        public readonly ICorrelationIdGenerator _correlationId;
 
         public BasketController(
             IMediator mediator,
-            DiscountGrpcService discountGrpcService,
-            IPublishEndpoint publishEndpoint
+            IPublishEndpoint publishEndpoint,
+            ICorrelationIdGenerator correlationId,
+            ILogger<BasketController> logger
         )
         {
             _publishEndpoint = publishEndpoint;
-            _discountGrpcService = discountGrpcService;
             _mediator = mediator;
+            _correlationId = correlationId;
+            _logger = logger;
+            _logger.LogInformation("CorrelationId {correlationId}:", _correlationId.Get());
         }
 
         [HttpGet]
@@ -48,14 +53,6 @@ namespace Basket.API.Controllers
             [FromBody] CreateShoppingCartCommand createShoppingCartCommand
         )
         {
-            foreach (var item in createShoppingCartCommand.Items)
-            {
-                var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
-                if(coupon == null){
-                    item.Price = 0;
-                }
-                item.Price -= coupon!.Amount;
-            }
             var basket = await _mediator.Send(createShoppingCartCommand);
             return Ok(basket);
         }
@@ -86,6 +83,7 @@ namespace Basket.API.Controllers
             }
             var eventMesg = BasketMapper.Mapper.Map<BasketCheckoutEvent>(basketCheckout);
             eventMesg.TotalPrice = basket.TotalPrice;
+            eventMesg.CorrelationId = _correlationId.Get();
             await _publishEndpoint.Publish(eventMesg);
             var deleteQuery = new DeleteBasketByUserNameQuery(basketCheckout.UserName);
             await _mediator.Send(deleteQuery);
