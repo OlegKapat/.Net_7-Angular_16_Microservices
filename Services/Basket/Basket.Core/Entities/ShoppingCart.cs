@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Basket.Core.Entities;
-
 namespace Basket.Core.Entities
 {
     public class ShoppingCart

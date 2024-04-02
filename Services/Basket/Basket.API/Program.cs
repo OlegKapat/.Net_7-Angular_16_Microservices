@@ -43,11 +43,11 @@ var apiVersioningBuilder = builder.Services.AddApiVersioning(options =>
 {
     options.ReportApiVersions = true;
     options.DefaultApiVersion = new ApiVersion(1, 0);
-    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.ReportApiVersions = true;
     options.ApiVersionReader = ApiVersionReader.Combine(
-        new UrlSegmentApiVersionReader(),
-        new HeaderApiVersionReader("x-api-version"),
-        new MediaTypeApiVersionReader("x-api-version")
+         new HeaderApiVersionReader("X-Version"),
+        new QueryStringApiVersionReader("api-version", "ver"),
+         new MediaTypeApiVersionReader("ver")
     );
 });
 apiVersioningBuilder.AddApiExplorer(options =>
@@ -55,6 +55,7 @@ apiVersioningBuilder.AddApiExplorer(options =>
     options.GroupNameFormat = "'v'VVV";
     options.SubstituteApiVersionInUrl = true;
 });
+
 builder.Services.AddApiVersioning();
 builder.Services.AddCors(options =>
 {
@@ -132,13 +133,13 @@ builder.Services.AddControllers(options =>
     options.Filters.Add(new AuthorizeFilter(userPolicy));
 });
 
-builder.Services
-    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.Authority = "https://localhost:9009";
-        options.Audience = "Basket";
-    });
+// builder.Services
+//     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+//     .AddJwtBearer(options =>
+//     {
+//         options.Authority = "https://localhost:9009";
+//         options.Audience = "Basket";
+//     });
 var app = builder.Build();
 var nginxPath = "/basket";
 var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();

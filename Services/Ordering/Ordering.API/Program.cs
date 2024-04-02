@@ -37,6 +37,7 @@ builder.Services.AddInfraServices(configuration);
 //builder.Services.AddScoped<OrderContextFactory>();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<BasketOrderingConsumer>();
+builder.Services.AddScoped<BasketOrderingConsumerV2>();
 builder.Services.AddScoped<ICorrelationIdGenerator, CorrelationIdGenerator>();
 // host.MigrateDatabase<OrderContext>(
 //     (context, services) =>
@@ -52,12 +53,17 @@ builder.Services.AddScoped<ICorrelationIdGenerator, CorrelationIdGenerator>();
 builder.Services.AddMassTransit(config =>
 {
     config.AddConsumer<BasketOrderingConsumer>();
+      config.AddConsumer<BasketOrderingConsumerV2>();
     config.UsingRabbitMq(
         (ctx, cfg) =>
         {
             cfg.Host(configuration["EventBusSettings:HostAddress"]);
              cfg.ReceiveEndpoint(EventBusConstants.BasketCheckoutQueue,c=>{
                 c.ConfigureConsumer<BasketOrderingConsumer>(ctx);  
+             });
+             // V2 ENDPOINT
+               cfg.ReceiveEndpoint(EventBusConstants.BasketCheckoutQueueV2,c=>{
+                c.ConfigureConsumer<BasketOrderingConsumerV2>(ctx);  
              });
         }
         
