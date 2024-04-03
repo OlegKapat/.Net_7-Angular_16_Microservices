@@ -98,7 +98,7 @@ builder.Services.Configure<MassTransitHostOptions>(options =>
     options.StartTimeout = TimeSpan.FromSeconds(30);
     options.StopTimeout = TimeSpan.FromMinutes(1);
 });
-
+ builder.Services.AddScoped<ICorrelationIdGenerator, CorrelationIdGenerator>();
 builder.Services.AddMassTransit(config =>
 {
     config.UsingRabbitMq(
@@ -108,38 +108,28 @@ builder.Services.AddMassTransit(config =>
         }
     );
 });
+  builder.Services.AddControllers();
  //?Identity Server changes
-        var Policy = new AuthorizationPolicyBuilder()
-            .RequireAuthenticatedUser()
-            .Build();
+        // var Policy = new AuthorizationPolicyBuilder()
+        //     .RequireAuthenticatedUser()
+        //     .Build();
         
-        builder.Services.AddControllers(config =>
-        {
-            config.Filters.Add(new AuthorizeFilter(Policy));
-        });
+        // builder.Services.AddControllers(config =>
+        // {
+        //     config.Filters.Add(new AuthorizeFilter(Policy));
+        // });
         
-        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                options.Authority = "https://localhost:9009";
-                options.Audience = "Basket";
-            });
-        builder.Services.AddScoped<ICorrelationIdGenerator, CorrelationIdGenerator>();
+        // builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        //     .AddJwtBearer(options =>
+        //     {
+        //         options.Authority = "https://localhost:9009";
+        //         options.Audience = "Basket";
+        //     });
+       
 
-//? Add Authentication
-var userPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-builder.Services.AddControllers(options =>
-{
-    options.Filters.Add(new AuthorizeFilter(userPolicy));
-});
 
-// builder.Services
-//     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//     .AddJwtBearer(options =>
-//     {
-//         options.Authority = "https://localhost:9009";
-//         options.Audience = "Basket";
-//     });
+
+
 var app = builder.Build();
 var nginxPath = "/basket";
 var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();

@@ -158,7 +158,7 @@ services:
     container_name: identityserver
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://*:9011
+      # - ASPNETCORE_URLS=http://*:9011
     ports:
       - "9011:9011"
 

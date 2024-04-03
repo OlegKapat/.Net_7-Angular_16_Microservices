@@ -68,34 +68,34 @@ namespace Catalog.API
             services.AddScoped<IBrandRepository, ProductRepository>();
             services.AddScoped<ITypesRepository, ProductRepository>();
             services.AddScoped<ICorrelationIdGenerator, CorrelationIdGenerator>();
-            //services.AddControllers();
+            services.AddControllers();
 
             //? Add Authentication
-            var userPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+            //var userPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
 
-            services.AddControllers(options =>
-            {
-                options.Filters.Add(new AuthorizeFilter(userPolicy));
-            });
+            // services.AddControllers(options =>
+            // {
+            //     options.Filters.Add(new AuthorizeFilter(userPolicy));
+            // });
 
-            services
-                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.Authority = "https://localhost:9009";
-                    options.Audience = "Catalog";
-                });
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("CanRead", builder =>
-                {
-                    builder.RequireClaim("scope", "catalogapi.read");
-                });
-                options.AddPolicy("CanWrite", builder =>
-                {
-                    builder.RequireClaim("scope", "catalogapi.write");
-                });
-            });
+            // services
+            //     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //     .AddJwtBearer(options =>
+            //     {
+            //         options.Authority = "https://localhost:9009";
+            //         options.Audience = "Catalog";
+            //     });
+            // services.AddAuthorization(options =>
+            // {
+            //     options.AddPolicy("CanRead", builder =>
+            //     {
+            //         builder.RequireClaim("scope", "catalogapi.read");
+            //     });
+            //     options.AddPolicy("CanWrite", builder =>
+            //     {
+            //         builder.RequireClaim("scope", "catalogapi.write");
+            //     });
+            // });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
