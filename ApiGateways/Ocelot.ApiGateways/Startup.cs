@@ -24,6 +24,11 @@ namespace ApiGateways
                 );
             services.AddScoped<ICorrelationIdGenerator, CorrelationIdGenerator>();
             services.AddOcelot().AddCacheManager(o => o.WithDictionaryHandle());
+            services.AddCors(options =>
+        {
+            options.AddPolicy("CorsPolicy",
+                policy => { policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin(); });
+        });
         }
 
         public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -34,6 +39,7 @@ namespace ApiGateways
             }
             app.UseRouting();
             app.AddCorrelationIdMiddleware();
+            app.UseCors("CorsPolicy");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet(
