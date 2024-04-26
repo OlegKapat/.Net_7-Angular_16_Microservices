@@ -11,17 +11,18 @@ namespace ApiGateways
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            var authShema = "EShoppingGatewayAuthScheme";
-            services
-                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(
-                    authShema,
-                    options =>
-                    {
-                        options.Authority = "https://localhost:9009";
-                        options.Audience = "EShoppingGateway";
-                    }
-                );
+            //! Here we neednt add the IdentityServer4 configuration as we are not using it in this project
+            //var authShema = "EShoppingGatewayAuthScheme";
+            // services
+            //     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //     .AddJwtBearer(
+            //         authShema,
+            //         options =>
+            //         {
+            //             options.Authority = "https://localhost:9009";
+            //             options.Audience = "EShoppingGateway";
+            //         }
+            //     );
             services.AddScoped<ICorrelationIdGenerator, CorrelationIdGenerator>();
             services.AddOcelot().AddCacheManager(o => o.WithDictionaryHandle());
             services.AddCors(options =>

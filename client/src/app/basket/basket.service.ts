@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Basket, IBasket, IBasketItem, IBasketTotal } from '../shared/models/basket';
 import { IProduct } from '../shared/models/product';
+import { AccountService } from '../account/account.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class BasketService {
   private basketTotal = new BehaviorSubject<IBasketTotal | null>(null);
   basketTotal$ = this.basketTotal.asObservable();
 
-  constructor(private http: HttpClient, private acntService: AcntService, private router: Router) { }
+  constructor(private http: HttpClient, private accountService: AccountService, private router: Router) { }
 
   getBasket(username: string){
     return this.http.get<IBasket>(this.baseUrl+'/Basket/GetBasket/rahul').subscribe({
@@ -39,7 +40,7 @@ export class BasketService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': this.acntService.authorizationHeaderValue
+        'Authorization': this.accountService.authorizationHeaderValue
       })
     };
     return this.http.post<IBasket>(this.baseUrl +'/Basket/CheckoutV2', basket, httpOptions).subscribe({

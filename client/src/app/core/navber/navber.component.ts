@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from 'src/app/account/account.service';
 import { BasketService } from 'src/app/basket/basket.service';
 import { IBasketItem } from 'src/app/shared/models/basket';
 
@@ -10,12 +11,12 @@ import { IBasketItem } from 'src/app/shared/models/basket';
 export class NavbarComponent implements OnInit {
   constructor(
     public basketService: BasketService,
-    private acntService: AcntService
+    private accountService: AccountService
   ) {}
 
   ngOnInit(): void {
     console.log(`current user:`);
-    this.acntService.currentUser$.subscribe({
+    this.accountService.currentUser$.subscribe({
       next: (res: any) => {
         this.isUserAuthenticated = res;
         console.log(this.isUserAuthenticated);
@@ -32,9 +33,9 @@ export class NavbarComponent implements OnInit {
     return items.reduce((sum, item) => sum + item.quantity, 0);
   }
   public login = () => {
-    this.acntService.login();
+    this.accountService.login();
   };
   public logout = () => {
-    this.acntService.signout();
+    this.accountService.signout();
   };
 }
