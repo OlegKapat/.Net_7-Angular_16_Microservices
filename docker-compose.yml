@@ -23,8 +23,8 @@ services:
   orderdb:
     image: mcr.microsoft.com/mssql/server:2019-latest
 
-  portainer:
-    image: portainer/portainer-ce
+  # portainer:
+  #   image: portainer/portainer-ce
 
   pgadmin:
     image: dpage/pgadmin4
